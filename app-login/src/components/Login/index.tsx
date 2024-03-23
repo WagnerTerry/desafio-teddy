@@ -19,7 +19,7 @@ const LoginForm = () => {
     // Verificar se as credenciais estão corretas
     if (username === 'admin' && password === 'root') {
       // Salvar detalhes do usuário no localStorage
-      localStorage.setItem('user', JSON.stringify({ username }));
+      localStorage.setItem('user', JSON.stringify(username ));
       setIsLoggedIn(true);
       singleSpa.navigateToUrl('/app-home');
       
