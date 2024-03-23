@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom'; // Importe useHistory para redirecionar o usuário
-import './styles.css'; // Importando o arquivo de estilos CSS
-
+import * as singleSpa from 'single-spa';
+import './styles.css'; 
 const LoginForm = () => {
-//   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,10 +10,9 @@ const LoginForm = () => {
     const user = localStorage.getItem('user');
     if (user) {
       setIsLoggedIn(true);
-      // Redirecionar para outra página se o usuário já estiver autenticado
-    //   navigate('/dashboard');
+      singleSpa.navigateToUrl('/app-home');
     }
-  }, []); // O segundo argumento [] garante que este efeito só seja executado uma vez, quando o componente é montado
+  }, []); 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,15 +21,15 @@ const LoginForm = () => {
       // Salvar detalhes do usuário no localStorage
       localStorage.setItem('user', JSON.stringify({ username }));
       setIsLoggedIn(true);
-      // Redirecionar para outra página após o login
-    //   navigate('/dashboard');
+      singleSpa.navigateToUrl('/app-home');
+      
     } else {
       alert('Credenciais inválidas. Tente novamente.');
     }
   };
 
   if (isLoggedIn) {
-    return null; // Se o usuário estiver logado, não exibir a tela de login
+    return null;
   }
 
   return (
