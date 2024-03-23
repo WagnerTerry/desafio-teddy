@@ -6,6 +6,22 @@ import Tab from "@mui/material/Tab";
 
 export default function CenteredTabs() {
   const [value, setValue] = React.useState(0);
+  const [authenticated, setAuthenticated] = React.useState(false);
+
+  React.useEffect(() => {
+    // Verifique a autenticação ao montar o componente
+    checkAuthentication();
+  }, []);
+
+  const checkAuthentication = () => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setAuthenticated(true);
+    } else {
+      setAuthenticated(false);
+      singleSpa.navigateToUrl("/");
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
