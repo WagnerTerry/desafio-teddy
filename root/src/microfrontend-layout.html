@@ -22,13 +22,15 @@
       <application name="@mfe/app-login"></application>
     </route>
 
-    <route path="/app-home">
-      <nav>
-        <application name="@mfe/app-navbar"></application>
-
-      </nav>
-      <application name="@mfe/app-home"></application>
-    </route>
+    <nav>
+      <application name="@mfe/app-navbar"></application>
+      <route path="/app-home">
+        <application name="@mfe/app-home"></application>
+      </route>
+      <route path="/app-about">
+        <application name="@mfe/app-about"></application>
+      </route>
+    </nav>
     <!-- </nav> -->
     <!-- <route default>
       <application name="@single-spa/welcome"></application>

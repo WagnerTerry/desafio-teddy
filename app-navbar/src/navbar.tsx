@@ -25,6 +25,16 @@ export default function CenteredTabs() {
       case 2:
         singleSpa.navigateToUrl("/app-home");
         break;
+      case 3:
+        singleSpa.navigateToUrl("/app-home");
+        break;
+      case 4:
+        singleSpa.navigateToUrl("/app-home");
+        break;
+      case 5:
+        singleSpa.navigateToUrl("/app-about");
+        break;
+
       default:
         break;
     }
