@@ -68,8 +68,14 @@ export function ListPartners() {
     console.log(`Editar parceiro com ID ${partnerId}`);
   };
 
-  const handleDelete = (partnerId: string) => {
-    console.log(`Deletar parceiro com ID ${partnerId}`);
+  const handleDelete = async (partnerId: string) => {
+      try {
+        await APIService.deletePartner(partnerId);
+        setPartners(partners.filter((partner) => partner.id !== partnerId))
+        
+    } catch (e) {
+        console.log("Ocorreu um erro ao excluir parceiro", e)
+    }
   };
 
   const pageNumbers = [];
