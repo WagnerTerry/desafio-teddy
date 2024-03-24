@@ -16,16 +16,32 @@ interface IPartner {
 export function ListPartners() {
   const [partners, setPartners] = useState<IPartner[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const partnersPerPage: number = 5;
+  const [loading, setLoading] = useState<boolean>(true); 
+
+  const partnersPerPage: number = 10;
+
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR'); // Define o formato da data como DD/MM/YYYY
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       const _partners = await APIService.getPartners();
       setPartners(_partners);
+      setLoading(false); 
     };
 
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-text">Loading...</div>
+      </div>
+    );
+  }
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -40,7 +56,7 @@ export function ListPartners() {
     <tr key={partner.id}>
       <td>{partner.id}</td>
       <td>{partner.name}</td>
-      <td>{partner.createdAt}</td>
+      <td>{formatDate(partner.createdAt)}</td> {/* Formatando a data aqui */}
       <td>
         <button onClick={() => handleEdit(partner.id)}>Editar</button>
         <button onClick={() => handleDelete(partner.id)}>Deletar</button>
@@ -69,7 +85,7 @@ export function ListPartners() {
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Data de Criação</th> {/* Corrigi o cabeçalho da coluna */}
+            <th>Data de Criação</th>
             <th>Ações</th>
           </tr>
         </thead>
