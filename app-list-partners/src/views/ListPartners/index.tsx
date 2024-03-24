@@ -58,8 +58,8 @@ export function ListPartners() {
       <td>{partner.name}</td>
       <td>{formatDate(partner.createdAt)}</td> {/* Formatando a data aqui */}
       <td>
-        <button onClick={() => handleEdit(partner.id)}>Editar</button>
-        <button onClick={() => handleDelete(partner.id)}>Deletar</button>
+        <button className="edit-button" onClick={() => handleEdit(partner.id)}>Editar</button>
+        <button className="delete-button" onClick={() => handleDelete(partner.id)}>Deletar</button>
       </td>
     </tr>
   ));

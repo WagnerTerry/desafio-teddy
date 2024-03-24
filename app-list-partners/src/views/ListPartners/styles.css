@@ -63,5 +63,36 @@
     font-size: 18px;
     color: #333;
   }
+
+
+  .edit-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: orange; /* Cor laranja */
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-button:hover {
+    background-color: darkorange; /* Cor laranja mais escura ao passar o mouse */
+  }
+  
+  .delete-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: red; /* Cor vermelha */
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred; /* Cor vermelha mais escura ao passar o mouse */
+  }
   
   
