@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as singleSpa from "single-spa";
-import './styles.css';
 import APIService from '../services/APIService';
+import './styles.css';
 
 interface PartnerFormProps {
     id?: string;
@@ -25,11 +25,17 @@ export default function PartnerForm(props: PartnerFormProps) {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const data = { ...formData }; // Copia dos dados do formulário
+
+        if (!formData.name) {
+            alert("Por favor, preencha o campo 'Nome'");
+            return;
+        }
+
+        const data = { ...formData }; 
         try {
-            const capitalName = data.name?.toUpperCase(); // Converte o nome para maiúsculas
-            const partners = await APIService.getPartners();
-            const duplicateName = partners.some((partner: any) => partner.name.toUpperCase() === capitalName);
+            const capitalName = data.name?.toUpperCase(); 
+            const products = await APIService.getPartners();
+            const duplicateName = products.some((partner: any) => partner.name.toUpperCase() === capitalName);
             
             if (duplicateName) {
                 alert("Já existe um parceiro com esse nome, coloque outro nome");
@@ -50,8 +56,8 @@ export default function PartnerForm(props: PartnerFormProps) {
     async function addPartner(data: any) {
         try {
             await APIService.savePartner(data);
-            alert("parceiro criado com sucesso");
-            singleSpa.navigateToUrl("/app-home");
+            alert("Parceiro criado com sucesso");
+            singleSpa.navigateToUrl("/app-list-partners");
         } catch (error) {
             console.log("Ocorreu um erro ao criar o parceiro:", error);
             alert("Erro ao criar o parceiro");
@@ -61,7 +67,7 @@ export default function PartnerForm(props: PartnerFormProps) {
     async function changeProduct(id: string, data: PartnerFormProps) {
         try {
             await APIService.updatePartner(id, data);
-            alert("Parceiro atualizado com sucesso");
+            alert("parceiro atualizado com sucesso");
             singleSpa.navigateToUrl("/app-home");
         } catch (error) {
             console.log("Ocorreu um erro ao atualizar o parceiro:", error);
@@ -86,6 +92,7 @@ export default function PartnerForm(props: PartnerFormProps) {
                 <div>
                     <label htmlFor="description">Descrição:</label>
                     <input
+                        type="text"
                         id="description"
                         name="description"
                         value={formData.description}
