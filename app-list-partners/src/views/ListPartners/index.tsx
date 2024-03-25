@@ -58,6 +58,7 @@ export function ListPartners() {
     <tr key={idx}>
       <td>{partner.id}</td>
       <td>{partner.name}</td>
+      <td className="truncate-text">{partner.description}</td>
       <td>{formatDate(partner.createdAt)}</td> {/* Formatando a data aqui */}
       <td>
         <button className="edit-button" onClick={() => handleEdit(partner.id, partner[idx])}>Editar</button>
@@ -102,6 +103,7 @@ export function ListPartners() {
           <tr>
             <th>ID</th>
             <th>Nome</th>
+            <th>Descrição</th>
             <th>Data de Criação</th>
             <th>Ações</th>
           </tr>
