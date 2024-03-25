@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import APIService from "../services/APIService";
 import * as singleSpa from "single-spa";
+import './styles.css';
+import APIService from '../services/APIService';
 
 interface PartnerFormProps {
     id?: string;
@@ -69,8 +70,8 @@ export default function PartnerForm(props: PartnerFormProps) {
     }
 
     return (
-        <div>
-            <h1>Formulário</h1>
+        <div className="form-container">
+            <h2>Cadastro de parceiros</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Nome:</label>
@@ -84,7 +85,7 @@ export default function PartnerForm(props: PartnerFormProps) {
                 </div>
                 <div>
                     <label htmlFor="description">Descrição:</label>
-                    <textarea
+                    <input
                         id="description"
                         name="description"
                         value={formData.description}

@@ -5,6 +5,6 @@
     "declarationDir": "dist"
   },
   "files": ["src/mfe-app-list-partners.tsx"],
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../app-register-partner/src/components", "../app-register-partner/src/views/RegisterPartner"],
   "exclude": ["src/**/*.test*"]
 }
