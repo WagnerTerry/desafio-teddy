@@ -73,8 +73,8 @@ export function ListCompanies() {
         localStorage.setItem('ext_id', data.id);
         localStorage.setItem('companyName', data.companyName);
         localStorage.setItem('collaboratorsCount', JSON.stringify(data.collaboratorsCount));
-        localStorage.setItem('description', (data.isActive));
-        singleSpa.navigateToUrl("/app-register-company", data);
+        localStorage.setItem('isActive', (data.isActive));
+        singleSpa.navigateToUrl("/app-register-external-company", data);
       }
     } catch (e) {
       alert("Erro ao atualizar empresa")
@@ -88,7 +88,7 @@ export function ListCompanies() {
       setCompanies(companies.filter((company) => company.id !== companyId))
 
     } catch (e) {
-      console.log("Ocorreu um erro ao excluir parceiro", e)
+      console.log("Ocorreu um erro ao excluir empresa", e)
     }
   };
 

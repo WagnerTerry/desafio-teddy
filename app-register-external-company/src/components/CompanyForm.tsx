@@ -60,7 +60,7 @@ export default function CompanyForm(props: CompanyFormProps) {
         try {
             await APIService.saveCompany(data);
             alert("Empresa criado com sucesso");
-            singleSpa.navigateToUrl("/app-list-partners");
+            singleSpa.navigateToUrl("/app-list-external-companies");
         } catch (error) {
             console.log("Ocorreu um erro ao criar o empresa:", error);
             alert("Erro ao criar o empresa");
@@ -77,7 +77,7 @@ export default function CompanyForm(props: CompanyFormProps) {
 
             alert("Empresa atualizada com sucesso");
 
-            singleSpa.navigateToUrl("/app-list-partners");
+            singleSpa.navigateToUrl("/app-list-external-companies");
         } catch (error) {
             console.log("Ocorreu um erro ao atualizar o empresa:", error);
             alert("Erro ao atualizar o empresa");
@@ -97,22 +97,29 @@ export default function CompanyForm(props: CompanyFormProps) {
             <h2>Cadastro de Empresas</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="name">Nome:</label>
+                    <label htmlFor="companyName">Nome:</label>
                     <input
                         type="text"
-                        id="name"
-                        name="name"
+                        name="companyName"
                         value={formData.companyName}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="collaboratorsCount">Descrição:</label>
+                    <label htmlFor="collaboratorsCount">Quantidade de colaboradores:</label>
                     <input
                         type="text"
-                        id="collaboratorsCount"
                         name="collaboratorsCount"
                         value={formData.collaboratorsCount}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="isActive">Ativa:</label>
+                    <input
+                        type="text"
+                        name="isActive"
+                        value={formData.isActive}
                         onChange={handleChange}
                     />
                 </div>
