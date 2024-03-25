@@ -1,45 +1,35 @@
 <single-spa-router>
-  <!--
-
-    This is the single-spa Layout Definition for your microfrontends.
-    See https://single-spa.js.org/docs/layout-definition/ for more information.
-
-  -->
-
-  <!-- Example layouts you might find helpful:
-
-  <nav>
-    <application name="@org/navbar"></application>
-  </nav>
-  <route path="settings">
-    <application name="@org/settings"></application>
-  </route>
-
-  -->
-
   <main>
     <route default>
       <application name="@mfe/app-login"></application>
     </route>
 
-    <nav>
-      <application name="@mfe/app-navbar"></application>
-      <route path="/app-home">
-        <application name="@mfe/app-home"></application>
-      </route>
-      <route path="/app-about">
-        <application name="@mfe/app-about"></application>
-      </route>
-      <route path="/app-register-partner">
-        <application name="@mfe/app-register-partner"></application>
-      </route>
-      <route path="/app-list-partners">
-        <application name="@mfe/app-list-partners"></application>
-      </route>
-    </nav>
-    <!-- </nav> -->
-    <!-- <route default>
-      <application name="@single-spa/welcome"></application>
-    </route> -->
+    <route path="/app-home">
+      <nav>
+        <application name="@mfe/app-navbar"></application>
+      </nav>
+      <application name="@mfe/app-home"></application>
+    </route>
+
+    <route path="/app-about">
+      <nav>
+        <application name="@mfe/app-navbar"></application>
+      </nav>
+      <application name="@mfe/app-about"></application>
+    </route>
+
+    <route path="/app-register-partner">
+      <nav>
+        <application name="@mfe/app-navbar"></application>
+      </nav>
+      <application name="@mfe/app-register-partner"></application>
+    </route>
+
+    <route path="/app-list-partners">
+      <nav>
+        <application name="@mfe/app-navbar"></application>
+      </nav>
+      <application name="@mfe/app-list-partners"></application>
+    </route>
   </main>
 </single-spa-router>

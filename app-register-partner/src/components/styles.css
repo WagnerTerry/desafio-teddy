@@ -1,6 +1,7 @@
 .form-container {
   max-width: 400px;
   margin: 0 auto;
+
 }
 
 .form-container h1 {
@@ -10,14 +11,14 @@
 .form-container form {
   display: flex;
   flex-direction: column;
+
 }
 
 .form-container label {
   margin-bottom: 5px;
 }
 
-.form-container input,
-.form-container textarea {
+.form-container input {
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -40,4 +41,11 @@
 form div {
   display: flex;
   flex-direction: column;
+  width: 100%;
+
+}
+
+form button {
+  width: 100%;
+
 }
