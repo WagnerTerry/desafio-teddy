@@ -19,11 +19,6 @@ export default class APIService {
     return result.data;
   };
 
-  static savePartner = async (data: string) => {
-    const result = await axios.post(`${BaseURL}`, data);
-    return result.data;
-  };
-
   static updatePartner = async (id: string, data: PartnerFormEditProps) => {
     const { name, description } = data;
     const payload = {

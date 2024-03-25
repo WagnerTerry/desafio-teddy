@@ -28,11 +28,11 @@ export default function PartnerForm(props: PartnerFormProps) {
         const data = { ...formData }; // Copia dos dados do formulário
         try {
             const capitalName = data.name?.toUpperCase(); // Converte o nome para maiúsculas
-            const products = await APIService.getPartners();
-            const duplicateName = products.some((partner: any) => partner.name.toUpperCase() === capitalName);
+            const partners = await APIService.getPartners();
+            const duplicateName = partners.some((partner: any) => partner.name.toUpperCase() === capitalName);
             
             if (duplicateName) {
-                alert("Já existe um produto com esse nome, coloque outro nome");
+                alert("Já existe um parceiro com esse nome, coloque outro nome");
                 return;
             }
             
@@ -50,22 +50,22 @@ export default function PartnerForm(props: PartnerFormProps) {
     async function addPartner(data: any) {
         try {
             await APIService.savePartner(data);
-            alert("Produto criado com sucesso");
+            alert("parceiro criado com sucesso");
             singleSpa.navigateToUrl("/app-home");
         } catch (error) {
-            console.log("Ocorreu um erro ao criar o produto:", error);
-            alert("Erro ao criar o produto");
+            console.log("Ocorreu um erro ao criar o parceiro:", error);
+            alert("Erro ao criar o parceiro");
         }
     }
 
     async function changeProduct(id: string, data: PartnerFormProps) {
         try {
             await APIService.updatePartner(id, data);
-            alert("Produto atualizado com sucesso");
+            alert("Parceiro atualizado com sucesso");
             singleSpa.navigateToUrl("/app-home");
         } catch (error) {
-            console.log("Ocorreu um erro ao atualizar o produto:", error);
-            alert("Erro ao atualizar o produto");
+            console.log("Ocorreu um erro ao atualizar o parceiro:", error);
+            alert("Erro ao atualizar o parceiro");
         }
     }
 
