@@ -24,7 +24,7 @@ export default function CenteredTabs() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.clear()
     singleSpa.navigateToUrl("/");
   };
 

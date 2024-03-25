@@ -65,7 +65,6 @@ export default function PartnerForm(props: PartnerFormProps) {
     }
 
     async function changePartner(id: string, data: PartnerFormProps) {
-        console.log("aaa", data)
         try {
             await APIService.updatePartner(id, data);
             localStorage.removeItem('id'),
@@ -78,6 +77,13 @@ export default function PartnerForm(props: PartnerFormProps) {
             console.log("Ocorreu um erro ao atualizar o parceiro:", error);
             alert("Erro ao atualizar o parceiro");
         }
+    }
+
+    function clearForm(){
+        localStorage.removeItem('id'),
+        localStorage.removeItem('name'),
+        localStorage.removeItem('description')
+        window.location.reload()
     }
 
     return (
@@ -104,7 +110,10 @@ export default function PartnerForm(props: PartnerFormProps) {
                         onChange={handleChange}
                     />
                 </div>
+                <div className='form-butons'>
                 <button type="submit">Enviar</button>
+                <button className='clear-form' type='button' onClick={clearForm}>Limpar</button>
+                </div>
             </form>
         </div>
     );
