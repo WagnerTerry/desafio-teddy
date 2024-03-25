@@ -77,8 +77,8 @@ export function ListPartners() {
         singleSpa.navigateToUrl("/app-register-partner", data);
       }
     } catch (e) {
-      alert("Erro ao atualizar produto")
-      console.log("Ocorreu um erro ao atualizar produto")
+      alert("Erro ao atualizar parceiro")
+      console.log("Ocorreu um erro ao atualizar parceiro")
     }
   }
 
