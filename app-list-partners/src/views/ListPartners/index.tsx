@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import * as singleSpa from "single-spa";
+
 import APIService from "../../services/APIService";
 import "./styles.css";
 
@@ -52,21 +54,30 @@ export function ListPartners() {
     indexOfLastPartner
   );
 
-  const renderPartners = currentPartners.map((partner) => (
-    <tr key={partner.id}>
+  const renderPartners = currentPartners.map((partner, idx) => (
+    <tr key={idx}>
       <td>{partner.id}</td>
       <td>{partner.name}</td>
       <td>{formatDate(partner.createdAt)}</td> {/* Formatando a data aqui */}
       <td>
-        <button className="edit-button" onClick={() => handleEdit(partner.id)}>Editar</button>
+        <button className="edit-button" onClick={() => handleEdit(partner.id, partner[idx])}>Editar</button>
         <button className="delete-button" onClick={() => handleDelete(partner.id)}>Deletar</button>
       </td>
     </tr>
   ));
 
-  const handleEdit = (partnerId: string) => {
-    console.log(`Editar parceiro com ID ${partnerId}`);
-  };
+  async function handleEdit(id: any, data: string) {
+    try {
+        if (id) {
+          singleSpa.navigateToUrl("/app-register-partner");
+
+            // navigate("/register-product", { replace: true, state: data })
+        }
+    } catch (e) {
+        alert("Erro ao atualizar produto")
+        console.log("Ocorreu um erro ao atualizar produto")
+    }
+}
 
   const handleDelete = async (partnerId: string) => {
       try {

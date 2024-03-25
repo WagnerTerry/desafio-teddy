@@ -24,7 +24,7 @@ export default class APIService {
     return result.data;
   };
 
-  static updateProduct = async (id: string, data: PartnerFormEditProps) => {
+  static updatePartner = async (id: string, data: PartnerFormEditProps) => {
     const { name, description } = data;
     const payload = {
       id,
