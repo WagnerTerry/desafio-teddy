@@ -3,16 +3,19 @@ import * as singleSpa from "single-spa";
 import APIService from '../services/APIService';
 import './styles.css';
 
-interface PartnerFormProps {
+interface CompanyFormProps {
     id?: string;
-    name?: string;
-    description?: string;
+    companyName?: string;
+    collaboratorsCount?: string;
+    isActive?: string
 }
 
-export default function PartnerForm(props: PartnerFormProps) {
-    const [formData, setFormData] = useState<PartnerFormProps>({
-        name: props.name || '',
-        description: props.description || ''
+export default function CompanyForm(props: CompanyFormProps) {
+    const [formData, setFormData] = useState<CompanyFormProps>({
+        companyName: props.companyName || '',
+        collaboratorsCount: props.collaboratorsCount || '',
+        isActive: props.isActive || ''
+
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -26,26 +29,26 @@ export default function PartnerForm(props: PartnerFormProps) {
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        if (!formData.name) {
+        if (!formData.companyName) {
             alert("Por favor, preencha o campo 'Nome'");
             return;
         }
 
         const data = { ...formData }; 
         try {
-            const capitalName = data.name?.toUpperCase(); 
-            const partners = await APIService.getPartners();
-            const duplicateName = partners.some((partner: any) => partner.name.toUpperCase() === capitalName);
+            const capitalName = data.companyName?.toUpperCase(); 
+            const companies = await APIService.getCompanies();
+            const duplicateName = companies.some((company: any) => company.companyName.toUpperCase() === capitalName);
             
             if (duplicateName) {
-                alert("Já existe um parceiro com esse nome, coloque outro nome");
+                alert("Já existe um Empresa com esse nome, coloque outro nome");
                 return;
             }
             
             if (props.id) {
-                await changePartner(props.id, data);
+                await changeCompany(props.id, data);
             } else {
-                await addPartner(data);
+                await addCompany(data);
             }
         } catch (error) {
             console.log("Ocorreu um erro ao enviar o formulário:", error);
@@ -53,42 +56,45 @@ export default function PartnerForm(props: PartnerFormProps) {
         }
     }
 
-    async function addPartner(data: any) {
+    async function addCompany(data: any) {
         try {
-            await APIService.savePartner(data);
-            alert("Parceiro criado com sucesso");
+            await APIService.saveCompany(data);
+            alert("Empresa criado com sucesso");
             singleSpa.navigateToUrl("/app-list-partners");
         } catch (error) {
-            console.log("Ocorreu um erro ao criar o parceiro:", error);
-            alert("Erro ao criar o parceiro");
+            console.log("Ocorreu um erro ao criar o empresa:", error);
+            alert("Erro ao criar o empresa");
         }
     }
 
-    async function changePartner(id: string, data: PartnerFormProps) {
+    async function changeCompany(id: string, data: any) {
         try {
-            await APIService.updatePartner(id, data);
+            await APIService.updateCompany(id, data);
             localStorage.removeItem('id'),
-            localStorage.removeItem('name'),
-            localStorage.removeItem('description')
-            alert("parceiro atualizado com sucesso");
+            localStorage.removeItem('companyName'),
+            localStorage.removeItem('collaboratorsCount')
+            localStorage.removeItem('isActive')
+
+            alert("Empresa atualizada com sucesso");
 
             singleSpa.navigateToUrl("/app-list-partners");
         } catch (error) {
-            console.log("Ocorreu um erro ao atualizar o parceiro:", error);
-            alert("Erro ao atualizar o parceiro");
+            console.log("Ocorreu um erro ao atualizar o empresa:", error);
+            alert("Erro ao atualizar o empresa");
         }
     }
 
     function clearForm(){
-        localStorage.removeItem('id'),
-        localStorage.removeItem('name'),
-        localStorage.removeItem('description')
+        localStorage.removeItem('ext_id'),
+        localStorage.removeItem('companyName'),
+        localStorage.removeItem('collaboratorsCount')
+        localStorage.removeItem('isActive')
         window.location.reload()
     }
 
     return (
         <div className="form-container">
-            <h2>Cadastro de parceiros</h2>
+            <h2>Cadastro de Empresas</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Nome:</label>
@@ -96,17 +102,17 @@ export default function PartnerForm(props: PartnerFormProps) {
                         type="text"
                         id="name"
                         name="name"
-                        value={formData.name}
+                        value={formData.companyName}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="description">Descrição:</label>
+                    <label htmlFor="collaboratorsCount">Descrição:</label>
                     <input
                         type="text"
-                        id="description"
-                        name="description"
-                        value={formData.description}
+                        id="collaboratorsCount"
+                        name="collaboratorsCount"
+                        value={formData.collaboratorsCount}
                         onChange={handleChange}
                     />
                 </div>

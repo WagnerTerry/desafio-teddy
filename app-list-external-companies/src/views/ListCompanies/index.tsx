@@ -9,7 +9,7 @@ interface ICompany {
   companyName: string;
   createdAt: string;
   id: string;
-  isActive: boolean;
+  isActive: string;
   lastSubmit: string;
 }
 
@@ -70,10 +70,10 @@ export function ListCompanies() {
 
     try {
       if (id) {
-        localStorage.setItem('id', data.id);
-        localStorage.setItem('name', data.companyName);
-        localStorage.setItem('description', JSON.stringify(data.isActive));
-        localStorage.setItem('name', JSON.stringify(data.collaboratorsCount));
+        localStorage.setItem('ext_id', data.id);
+        localStorage.setItem('companyName', data.companyName);
+        localStorage.setItem('collaboratorsCount', JSON.stringify(data.collaboratorsCount));
+        localStorage.setItem('description', (data.isActive));
         singleSpa.navigateToUrl("/app-register-company", data);
       }
     } catch (e) {
