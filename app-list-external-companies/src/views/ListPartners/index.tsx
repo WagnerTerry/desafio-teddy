@@ -99,7 +99,7 @@ export function ListCompanies() {
 
   return (
     <div className="container">
-      <h1>Lista de Parceiros</h1>
+      <h1>Lista de Empresas</h1>
       <table>
         <thead>
           <tr>
