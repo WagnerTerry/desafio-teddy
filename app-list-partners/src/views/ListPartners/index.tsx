@@ -54,20 +54,21 @@ export function ListPartners() {
     indexOfLastPartner
   );
 
-  const renderPartners = currentPartners.map((partner, idx) => (
-    <tr key={idx}>
+  const renderPartners = currentPartners.map((partner) => (
+    <tr key={partner.id}>
       <td>{partner.id}</td>
       <td>{partner.name}</td>
       <td className="truncate-text">{partner.description}</td>
       <td>{formatDate(partner.createdAt)}</td> {/* Formatando a data aqui */}
       <td>
-        <button className="edit-button" onClick={() => handleEdit(partner.id, partner[idx])}>Editar</button>
+        <button className="edit-button" onClick={() => handleEdit(partner.id, partner)}>Editar</button>
         <button className="delete-button" onClick={() => handleDelete(partner.id)}>Deletar</button>
       </td>
     </tr>
   ));
 
-  async function handleEdit(id: any, data: string) {
+  async function handleEdit(id: any, data: any) {
+    console.log("id", id, "data", data)
     try {
         if (id) {
           singleSpa.navigateToUrl("/app-register-partner");

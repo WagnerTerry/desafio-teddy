@@ -1,5 +1,5 @@
-import { useState } from "react";
-import PartnerForm from "../../components/PartnerForm";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';import PartnerForm from "../../components/PartnerForm";
 
 export function RegisterPartner(){
     // const _partner: any = location.state
