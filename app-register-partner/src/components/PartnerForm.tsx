@@ -43,7 +43,7 @@ export default function PartnerForm(props: PartnerFormProps) {
             }
             
             if (props.id) {
-                await changeProduct(props.id, data);
+                await changePartner(props.id, data);
             } else {
                 await addPartner(data);
             }
@@ -64,11 +64,16 @@ export default function PartnerForm(props: PartnerFormProps) {
         }
     }
 
-    async function changeProduct(id: string, data: PartnerFormProps) {
+    async function changePartner(id: string, data: PartnerFormProps) {
+        console.log("aaa", data)
         try {
             await APIService.updatePartner(id, data);
+            localStorage.removeItem('id'),
+            localStorage.removeItem('name'),
+            localStorage.removeItem('description')
             alert("parceiro atualizado com sucesso");
-            singleSpa.navigateToUrl("/app-home");
+
+            singleSpa.navigateToUrl("/app-list-partners");
         } catch (error) {
             console.log("Ocorreu um erro ao atualizar o parceiro:", error);
             alert("Erro ao atualizar o parceiro");

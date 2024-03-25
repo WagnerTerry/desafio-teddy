@@ -2,7 +2,6 @@ import React from 'react';
 
 const Home: React.FC = () => {
   const username = localStorage.getItem('user');
-  console.log("user", username)
 
   return (
     <div>

@@ -5,20 +5,20 @@ import APIService from "../../services/APIService";
 import "./styles.css";
 
 interface IPartner {
-    clients: [];
-    createdAt: string;
-    description: string;
-    id: string;
-    name: string;
-    projects: [];
-    repositoryGit: string;
-    urlDoc: string;
-  }
+  clients: [];
+  createdAt: string;
+  description: string;
+  id: string;
+  name: string;
+  projects: [];
+  repositoryGit: string;
+  urlDoc: string;
+}
 
 export function ListPartners() {
   const [partners, setPartners] = useState<IPartner[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(true); 
+  const [loading, setLoading] = useState<boolean>(true);
 
   const partnersPerPage: number = 10;
 
@@ -31,7 +31,7 @@ export function ListPartners() {
     const fetchData = async () => {
       const _partners = await APIService.getPartners();
       setPartners(_partners);
-      setLoading(false); 
+      setLoading(false);
     };
 
     fetchData();
@@ -67,27 +67,28 @@ export function ListPartners() {
     </tr>
   ));
 
-  async function handleEdit(id: any, data: any) {
-    console.log("id", id, "data", data)
-    try {
-        if (id) {
-          singleSpa.navigateToUrl("/app-register-partner");
+  async function handleEdit(id: string, data: IPartner) {
 
-            // navigate("/register-product", { replace: true, state: data })
-        }
+    try {
+      if (id) {
+        localStorage.setItem('id', data.id);
+        localStorage.setItem('name', data.name);
+        localStorage.setItem('description', data.description);
+        singleSpa.navigateToUrl("/app-register-partner", data);
+      }
     } catch (e) {
-        alert("Erro ao atualizar produto")
-        console.log("Ocorreu um erro ao atualizar produto")
+      alert("Erro ao atualizar produto")
+      console.log("Ocorreu um erro ao atualizar produto")
     }
-}
+  }
 
   const handleDelete = async (partnerId: string) => {
-      try {
-        await APIService.deletePartner(partnerId);
-        setPartners(partners.filter((partner) => partner.id !== partnerId))
-        
+    try {
+      await APIService.deletePartner(partnerId);
+      setPartners(partners.filter((partner) => partner.id !== partnerId))
+
     } catch (e) {
-        console.log("Ocorreu um erro ao excluir parceiro", e)
+      console.log("Ocorreu um erro ao excluir parceiro", e)
     }
   };
 

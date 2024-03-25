@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';import PartnerForm from "../../components/PartnerForm";
+import React, { useState } from 'react';
+
+import PartnerForm from "../../components/PartnerForm";
 
 export function RegisterPartner(){
-    // const _partner: any = location.state
-    // const [partners] = useState(_partner)
+    const [partners] = useState({
+        id: localStorage.getItem('id'),
+        name: localStorage.getItem('name'),
+        description: localStorage.getItem('description')
+    });
 
     return (
         <div>
-
             <PartnerForm
-                // id={products && products.id ? products.id : null}
-                // name={products ? products.name : null}
-                // description={products && products.description ? products.description : null}
+                id={partners.id ? partners.id : null}
+                name={partners.name ? partners.name : null}
+                description={partners.description ? partners.description : null}
             />
-
         </div>
     )
 }
