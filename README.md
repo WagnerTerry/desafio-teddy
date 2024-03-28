@@ -18,10 +18,14 @@
 ## Rodando o projeto
 
 Baixe as dependências de cada projeto com o comando
-- yarn
+```
+yarn
+```
 
 E dentro das pastas execute
-- yarn start
+```
+yarn start
+```
 
 Muita atenção na hora de executar cada microfrontend, sugiro que execute na seguinte ordem
 - root
@@ -65,17 +69,23 @@ Se executar numa ordem diferente, o localhost irá modificar e será necessário
 ## Configurando angular 15
 
 Para configurar o angular na versão 15, execute o comando
-- npm install -g @angular/cli@15
+```
+npm install -g @angular/cli@15
+```
 
 Nesse projeto eu usei o node na versão 18.18.0
 
 após instalar o angular , adicione esse script no arquivo index.ejs dentro da pasta root
 
+```
 <script src="https://cdn.jsdelivr.net/npm/zone.js@0.10.3/dist/zone.min.js"></script>
+```
 
 Configure o angular environments
 
--  ng g environments
+```
+ng g environments
+```
 
 Depois faça como está na pasta de environments
 
