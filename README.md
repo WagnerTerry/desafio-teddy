@@ -4,6 +4,16 @@
 
  Cada pedaço tem seu papel primordial, fazendo com que o front seja dividido , podendo auxiliar os times em seu desenvolvimento.
 
+ Nesse desafio eu utilizei o React e o Angular 15
+
+## Capa do Projeto
+![capa-microfrontends](https://github.com/WagnerTerry/desafio-teddy/blob/main/assets/desafio%20microfrontends.png)
+
+## Gif Projeto
+![microfrontends](https://github.com/WagnerTerry/desafio-teddy/blob/main/assets/microfrontends.gif)
+
+## Video (Youtube)
+[Apresentação desafio teddy](https://youtu.be/uGL_GR4FBfc)
 
 ## Rodando o projeto
 
